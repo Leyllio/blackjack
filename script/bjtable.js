@@ -320,21 +320,6 @@ function calculateTotal(cards) {
 }
 
 /**
- * Calcule le total d'une main en comptant chaque as comme 1.
- * @param {Card[]} cards Cartes de la main.
- * @returns {number} Total minimal de la main.
- */
-function calculateLowTotal(cards) {
-  let total = 0;
-
-  for (const card of cards) {
-    total += card.label === "A" ? 1 : card.value;
-  }
-
-  return total;
-}
-
-/**
  * Indique si une carte vaut 10.
  * @param {Card} card Carte à vérifier.
  * @returns {boolean} true si la carte vaut 10.
@@ -417,18 +402,13 @@ function isNaturalHand(hand) {
  * @returns {boolean} true si le double peut être utilisé.
  */
 function canDouble(hand) {
-  const lowTotal = hand ? calculateLowTotal(hand.cards) : 0;
-
   return Boolean(
     gameState === GAME_STATES.PLAYER &&
       hand &&
       hand.status === HAND_STATUSES.PLAYING &&
-      hand.cards.length === 2 &&
       !hand.doubled &&
       !hand.fromSplit &&
       !isNatural(hand.cards) &&
-      lowTotal >= 9 &&
-      lowTotal <= 11 &&
       bankroll >= hand.stake,
   );
 }
