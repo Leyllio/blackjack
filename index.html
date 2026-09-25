@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Blackjack</title>
+</head>
+<body>
+    <header class="game-banner">
+        <div class="banner-brand">
+            <h1 class="blackjack-title" aria-label="Blackjack">
+                <span class="title-letter" style="--letter-delay: 0ms;" aria-hidden="true">B</span>
+                <span class="title-letter" style="--letter-delay: 90ms;" aria-hidden="true">l</span>
+                <span class="title-letter" style="--letter-delay: 180ms;" aria-hidden="true">a</span>
+                <span class="title-letter" style="--letter-delay: 270ms;" aria-hidden="true">c</span>
+                <span class="title-letter" style="--letter-delay: 360ms;" aria-hidden="true">k</span>
+                <span class="title-letter" style="--letter-delay: 450ms;" aria-hidden="true">j</span>
+                <span class="title-letter" style="--letter-delay: 540ms;" aria-hidden="true">a</span>
+                <span class="title-letter" style="--letter-delay: 630ms;" aria-hidden="true">c</span>
+                <span class="title-letter" style="--letter-delay: 720ms;" aria-hidden="true">k</span>
+            </h1>
+            <div class="banner-suits" aria-hidden="true">
+                <span class="suit-icon suit-icon--heart"></span>
+                <span class="suit-icon suit-icon--spade"></span>
+                <span class="suit-icon suit-icon--diamond"></span>
+                <span class="suit-icon suit-icon--club"></span>
+            </div>
+        </div>
+        <div class="banner-tools">
+            <p class="bankroll">
+                Jetons :
+                <strong id="bankroll">1000</strong>
+                <img class="bankroll-chip" src="img/poker-chip.svg" alt="" aria-hidden="true">
+            </p>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Activer le thème nuit"
+                aria-pressed="false"
+            >
+                <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="game-board">
+        <section class="hand" aria-labelledby="dealer-heading">
+            <h2 id="dealer-heading">Main du dealer</h2>
+            <div id="dealer-hand"></div>
+            <p>Total : <span id="dealer-total">0</span></p>
+        </section>
+
+        <section class="hand hand--player" aria-labelledby="player-heading">
+            <div class="hand-heading">
+                <h2 id="player-heading">Votre main</h2>
+                <span id="active-hand-label" class="active-hand-label" hidden></span>
+            </div>
+            <div id="player-hand" class="player-hands"></div>
+            <p id="player-total" hidden aria-live="polite"></p>
+        </section>
+
+        <p id="game-status" class="game-status" aria-live="polite"></p>
+
+        <div class="controls" role="group" aria-label="Actions de jeu">
+            <button id="hit-button" type="button" disabled>Tirer une carte</button>
+            <button id="stand-button" type="button" disabled>Rester</button>
+            <button id="double-button" type="button" disabled>Doubler</button>
+            <button id="split-button" type="button" disabled>Séparer</button>
+        </div>
+
+        <div id="insurance-actions" class="side-bet-actions" role="group" aria-label="Assurance" hidden>
+            <p id="insurance-message">Le dealer montre un As : prenez-vous une assurance ?</p>
+            <div class="controls">
+                <button id="insurance-button" type="button">Assurance (5 jetons)</button>
+                <button id="decline-insurance-button" type="button">Refuser</button>
+            </div>
+        </div>
+
+        <div id="even-money-actions" class="side-bet-actions" role="group" aria-label="Even money" hidden>
+            <p>Blackjack naturel contre un As du dealer : even money ou paiement 3:2 ?</p>
+            <div class="controls">
+                <button id="even-money-button" type="button">Even money (1:1)</button>
+                <button id="decline-even-money-button" type="button">Refuser (3:2)</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="js-warning" role="alert">
+        <p class="warning-fr">Veuillez ajouter le bjtable.js associé pour les couleurs.</p>
+        <p class="warning-en">Please include the associated bjtable.js for the colors.</p>
+    </div>
+
+    <div class="game-overlay" id="game-overlay">
+        <section
+            class="overlay-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="overlay-title"
+            aria-describedby="overlay-message stake-hint final-scores"
+        >
+            <p class="overlay-kicker" id="overlay-kicker">La table est prête</p>
+            <h2 id="overlay-title">Prêt à jouer ?</h2>
+            <p id="overlay-message">
+                Une nouvelle partie de Blackjack vous attend.
+            </p>
+            <div class="stake-control">
+                <label for="stake-input">Mise de la prochaine partie</label>
+                <div class="stake-input-row">
+                    <input
+                        id="stake-input"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        step="1"
+                        value="10"
+                        inputmode="numeric"
+                        aria-describedby="stake-hint"
+                    >
+                    <span>jetons</span>
+                </div>
+                <p id="stake-hint" class="stake-hint">Solde disponible : 1000 jetons.</p>
+            </div>
+            <p id="final-scores" class="final-scores" hidden></p>
+            <div class="overlay-actions">
+                <button id="start-button" type="button">Commencer la partie</button>
+                <button id="restart-button" type="button" hidden>Nouvelle partie</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script/bjtable.js"></script>
+</body>
+</html>
