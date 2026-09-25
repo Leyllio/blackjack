@@ -836,12 +836,20 @@ button:disabled {
     white-space: nowrap;
   }
 
+  .card .corner {
+    font-size: clamp(0.6rem, 3vw, 1.1rem);
+  }
+
   .player-hands[data-hands="2"] .card {
     inline-size: min(2.75rem, 12vw, 6.5vh);
   }
 
   .player-hands[data-hands="2"] .card .value {
     font-size: clamp(0.85rem, 7vw, 1.15rem);
+  }
+
+  .player-hands[data-hands="2"] .card .corner {
+    font-size: clamp(0.5rem, 2.5vw, 0.95rem);
   }
 
   .controls {
