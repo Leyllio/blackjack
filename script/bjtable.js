@@ -406,6 +406,7 @@ function canDouble(hand) {
     gameState === GAME_STATES.PLAYER &&
       hand &&
       hand.status === HAND_STATUSES.PLAYING &&
+      hand.cards.length === 2 &&
       !hand.doubled &&
       !hand.fromSplit &&
       !isNatural(hand.cards) &&
