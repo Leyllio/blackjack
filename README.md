@@ -57,7 +57,7 @@ Les règles s’appuient sur les règles générales du Blackjack décrites dans
 ### Règles complémentaires implémentées
 
 - Le blackjack naturel est payé 3:2.
-- Une assurance peut être proposée lorsque le dealer montre un As ; elle est réglée à 2:1.
+- Une assurance peut être proposée lorsque le dealer montre un As ; sa mise est égale à la mise courante et elle est réglée à 2:1 en cas de blackjack du dealer.
 - Lorsque le joueur possède un blackjack naturel face à un As du dealer, il peut choisir l’even money ou conserver le paiement 3:2.
 - Les doubles et les séparations sont pris en compte dans le calcul des mises.
 

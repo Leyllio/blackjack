@@ -172,11 +172,6 @@ const MIN_STAKE = 1;
  */
 const STARTING_BANKROLL = 1000;
 /**
- * Mise fixe du pari annexe d'assurance.
- * @type {number}
- */
-const INSURANCE_STAKE = 5;
-/**
  * Bénéfice net d'un blackjack naturel, soit un paiement de 3:2.
  * @type {number}
  */
@@ -740,6 +735,14 @@ function updateControls() {
   doubleButton.disabled = !playerTurn || !canDouble(activeHand);
   splitButton.disabled = !playerTurn || !canSplit(activeHand);
   insuranceActions.hidden = gameState !== GAME_STATES.INSURANCE;
+  if (gameState === GAME_STATES.INSURANCE) {
+    insuranceButton.textContent =
+      "Assurance (" + roundStake + " jetons, 2:1)";
+    insuranceButton.setAttribute(
+      "aria-label",
+      "Prendre une assurance de " + roundStake + " jetons, payée 2 contre 1",
+    );
+  }
   evenMoneyActions.hidden = gameState !== GAME_STATES.EVEN_MONEY;
 }
 
@@ -1221,10 +1224,10 @@ function drawNextDealerCard(currentRoundId) {
 function settleInsurance(dealerHasBlackjack) {
   if (insuranceStatus === "taken") {
     if (dealerHasBlackjack) {
-      insuranceNet = INSURANCE_STAKE * INSURANCE_PAYOUT;
-      bankroll += INSURANCE_STAKE + insuranceNet;
+      insuranceNet = roundStake * INSURANCE_PAYOUT;
+      bankroll += roundStake + insuranceNet;
     } else {
-      insuranceNet = -INSURANCE_STAKE;
+      insuranceNet = -roundStake;
     }
   } else if (insuranceStatus === "declined") {
     insuranceNet = 0;
@@ -1484,13 +1487,13 @@ function handleInsuranceChoice(acceptInsurance) {
   }
 
   if (acceptInsurance) {
-    if (bankroll < INSURANCE_STAKE) {
+    if (bankroll < roundStake) {
       setStatus("Solde insuffisant pour prendre l'assurance.");
       return;
     }
 
     insuranceStatus = "taken";
-    bankroll -= INSURANCE_STAKE;
+    bankroll -= roundStake;
     updateBankroll();
   } else {
     insuranceStatus = "declined";

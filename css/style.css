@@ -798,7 +798,22 @@ button:disabled {
 
   .hand {
     flex: 0 0 auto;
+    min-block-size: max-content;
     padding: clamp(0.35rem, 1.2vh, 0.75rem);
+  }
+
+  #dealer-hand,
+  .player-hand-cards {
+    flex: 0 0 auto;
+    min-block-size: max-content;
+  }
+
+  #dealer-hand .card {
+    inline-size: min(5.5rem, 15vw, 12vh);
+  }
+
+  .player-hands[data-hands="2"] .player-hand-cards {
+    gap: 0.2rem;
   }
 
   .hand-heading {
@@ -822,7 +837,7 @@ button:disabled {
   }
 
   .player-hands[data-hands="2"] .card {
-    inline-size: min(4.25rem, 20vw, 8vh);
+    inline-size: min(2.75rem, 12vw, 6.5vh);
   }
 
   .player-hands[data-hands="2"] .card .value {
