@@ -383,7 +383,7 @@ body {
   background-color: var(--background);
   color: var(--text);
   display: flex;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   box-shadow: 0 0.5rem 1rem color-mix(in srgb, var(--text) 16%, transparent);
 }
 
@@ -685,8 +685,6 @@ button:disabled {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blackjack-title .title-letter,
-  .suit-icon,
   .card--dealing,
   .card--flip-in {
     animation: none;
