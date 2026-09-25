@@ -791,10 +791,28 @@ button:disabled {
 
   .game-board {
     padding-inline: 0.75rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .hand {
+    flex: 0 0 auto;
     padding: clamp(0.35rem, 1.2vh, 0.75rem);
+  }
+
+  .hand-heading {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .side-bet-actions {
+    inline-size: 100%;
+  }
+
+  .side-bet-actions p {
+    max-inline-size: 32rem;
+    margin-inline: auto;
   }
 
   .card .value {

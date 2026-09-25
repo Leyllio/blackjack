@@ -1049,7 +1049,7 @@ function startGame() {
   if (isDealerUpcardAce()) {
     insuranceStatus = "offered";
     setGameState(GAME_STATES.INSURANCE);
-    setStatus("Le dealer montre un As : choisissez Assurance ou Refuser.");
+    setStatus("");
     return;
   }
 
