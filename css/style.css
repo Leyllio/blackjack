@@ -18,7 +18,9 @@
   --accent: #f90633;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -30,6 +32,7 @@ html {
   inline-size: 100%;
   block-size: 100%;
   overflow: hidden;
+  overflow-x: hidden;
   overscroll-behavior: none;
   background-color: var(--background);
 }
@@ -41,6 +44,7 @@ body {
   min-block-size: 0;
   margin: 0;
   overflow: hidden;
+  overflow-x: hidden;
   overscroll-behavior: none;
   display: flex;
   flex-direction: column;
@@ -55,10 +59,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
   gap: 1rem;
   flex: 0 0 auto;
   min-block-size: clamp(5rem, 12vh, 7rem);
   padding: clamp(0.75rem, 2vh, 1.25rem) 1.5rem;
+  min-inline-size: 0;
+  overflow-x: hidden;
   border-block-end: 3px solid var(--accent);
   background-color: var(--primary);
   color: var(--background);
@@ -269,6 +276,7 @@ body {
   margin: 0 auto;
   padding: clamp(0.75rem, 2vh, 1.5rem) 1.5rem;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 .hand {
@@ -579,9 +587,11 @@ button:disabled {
 .game-overlay {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 100;
   display: grid;
   place-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
   padding: clamp(0.75rem, 3vh, 1.5rem);
 }
 
@@ -597,7 +607,8 @@ button:disabled {
   position: relative;
   z-index: 1;
   inline-size: min(100%, 28rem);
-  max-block-size: calc(100dvh - 3rem);
+  min-block-size: 0;
+  max-block-size: calc(100dvh - 2rem);
   padding: clamp(1rem, 4vh, 2rem);
   overflow: auto;
   border: 1px solid var(--secondary);
@@ -694,52 +705,68 @@ button:disabled {
 @media (max-width: 38rem) {
   .game-banner {
     gap: 0.5rem;
-    padding-inline: 0.75rem;
+    min-block-size: 4.5rem;
+    padding: 0 0.75rem;
   }
 
   .banner-brand {
-    gap: 0.35rem;
+    flex: 1 1 auto;
+    gap: 0.4rem;
+    min-inline-size: 0;
+    overflow: hidden;
   }
 
   .game-banner h1 {
-    font-size: clamp(1.25rem, 6.5vw, 1.75rem);
-  }
-
-  .suit-icon {
-    inline-size: clamp(0.9rem, 4.5vw, 1.15rem);
-    block-size: clamp(0.9rem, 4.5vw, 1.15rem);
+    flex: 0 0 auto;
+    min-inline-size: 0;
+    font-size: clamp(1.1rem, 6vw, 1.5rem);
   }
 
   .banner-suits {
-    gap: 0.25rem;
+    flex: 0 0 auto;
+    gap: 0.2rem;
+  }
+
+  .suit-icon {
+    inline-size: clamp(0.75rem, 4vw, 1rem);
+    block-size: clamp(0.75rem, 4vw, 1rem);
   }
 
   .banner-tools {
-    gap: 0.5rem;
+    flex: 0 0 auto;
+    gap: 0.4rem;
+    min-inline-size: 0;
   }
 
   .bankroll {
-    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
+    gap: 0.2rem;
+    font-size: clamp(0.65rem, 2.2vw, 0.8rem);
   }
 
   .bankroll-chip {
-    inline-size: 1.1rem;
-    block-size: 1.1rem;
+    inline-size: 1rem;
+    block-size: 1rem;
   }
 
   .theme-toggle {
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
+    margin-inline-start: 0;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+  }
+
+  .theme-icon {
+    inline-size: 1rem;
+    block-size: 1rem;
   }
 
   .game-overlay {
-    align-items: start;
-    padding-block: 6rem 0.75rem;
+    place-items: center;
+    padding: 0.75rem;
   }
 
   .overlay-box {
     inline-size: min(100%, 20rem);
-    max-block-size: calc(100dvh - 6.75rem);
+    max-block-size: calc(100dvh - 1.5rem);
     padding: 1rem;
   }
 
